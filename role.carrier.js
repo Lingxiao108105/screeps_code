@@ -4,8 +4,8 @@ var roleCarrier = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        
-        if(functionWorking.renew()){
+
+        if(functionWorking.renew(creep)){
             return;
         }
         

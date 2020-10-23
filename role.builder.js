@@ -4,13 +4,18 @@ var roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-
+		
+		if(functionWorking.renew(creep)){
+            return;
+		}
+		
 	    functionWorking.updateWorking(creep);
 
 	    if(creep.memory.working) {
 			if(functionWorking.repair(creep) ||
 				functionWorking.build(creep) ||
-				functionWorking.transfer(creep)){
+				functionWorking.upgrade(creep)
+				){
 				return;
 			}
 		}

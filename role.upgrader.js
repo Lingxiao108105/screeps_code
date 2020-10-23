@@ -5,6 +5,10 @@ var roleUpgrader = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
+        if(functionWorking.renew(creep)){
+            return;
+        }
+
         functionWorking.updateWorking(creep);
 
 	    if(creep.memory.working) {

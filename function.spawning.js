@@ -1,10 +1,10 @@
 var functionSpawning = {
 
     roles: {
-        carrier:{number:1, body:[CARRY,CARRY,CARRY,MOVE,MOVE,MOVE]},
-        harvester:{number:2, body:[WORK,WORK,WORK,MOVE]},
-        builder:{number:2, body:[WORK,CARRY,CARRY,MOVE,MOVE,MOVE]},
-        upgrader:{number:1, body:[WORK,WORK,CARRY,MOVE]},
+        carrier:{number:1, body:[CARRY,CARRY,CARRY,CARRY,MOVE,MOVE]},
+        harvester:{number:2, body:[WORK,WORK,WORK,WORK,WORK,MOVE]},
+        builder:{number:4, body:[WORK,WORK,CARRY,CARRY,MOVE,MOVE]},
+        upgrader:{number:3, body:[WORK,WORK,CARRY,CARRY,MOVE,MOVE]},
     },
 
     clearMemory: function() {
@@ -36,15 +36,6 @@ var functionSpawning = {
         if(Game.spawns['Spawn1'].spawnCreep(body, newName, {memory: {role: role}}) == 0){
             console.log('Spawning new ' + role + ' : ' + newName);
         }
-        if(role == 'harvester'){
-            if(Game.spawns['Spawn1'].memory.harvestSource != 1){
-                Game.spawns['Spawn1'].memory.harvestSource = 1;
-            }
-            else{
-                Game.spawns['Spawn1'].memory.harvestSource = 0;
-            }
-            Game.creep[newName].memory.harvestSource = Game.spawns['Spawn1'].memory.harvestSource;
-        }  
     },
 
 }
