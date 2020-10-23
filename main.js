@@ -16,7 +16,7 @@ module.exports.loop = function () {
     if(upgraders.length < 1) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE,MOVE], newName, 
             {memory: {role: 'upgrader'}});
     }
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
@@ -24,7 +24,7 @@ module.exports.loop = function () {
     if(builders.length < 1) {
         var newName = 'builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
             {memory: {role: 'builder'}});
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -32,7 +32,7 @@ module.exports.loop = function () {
     if(harvesters.length < 3) {
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, 
             {memory: {role: 'harvester'}});
     }
     
@@ -59,7 +59,7 @@ module.exports.loop = function () {
         console.log(step.x);
     }
 
-    * Game.spawns['Spawn1'].room.createConstructionSite(5,20,STRUCTURE_EXTENSION);
+    * Game.spawns['Spawn1'].room.createConstructionSite(5,18,STRUCTURE_EXTENSION);
     */
     
     var tower = Game.getObjectById('ca513ac7e41cc1db0d5e8094');
