@@ -15,7 +15,12 @@ var roleBuilder = {
 			}
 		}
 		else{
-			functionWorking.harvest(creep);
+			if(functionWorking.collect(creep)){
+                return;
+            }
+            else{
+                functionWorking.harvest(creep);
+            }
 		}
 	}
 };

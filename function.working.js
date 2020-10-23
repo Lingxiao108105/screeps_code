@@ -78,8 +78,11 @@ var functionWorking = {
         return true;
     },
 
+    /** @param {Creep} creep **/
     pickup: function(creep) {
-        const target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        var target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {
+            filter: (resource) => resource.amount > 50
+        });
         if(target) {
             if(creep.pickup(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
@@ -87,6 +90,31 @@ var functionWorking = {
             return true;
         }
         return false;
+    },
+
+    /** @param {Creep} creep **/
+    withdrawFromContainer: function(creep){
+        var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.structureType == STRUCTURE_CONTAINER &&
+            structure.store > 50
+        });
+        if(target) {
+            if(creep.withdraw(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
+            }
+            return true;
+        }
+        return false;
+    },
+
+    /** @param {Creep} creep **/
+    collect: function(creep){
+        if(functionWorking.pickup(creep)){
+            return true;
+        }
+        else{
+             return functionWorking.withdrawFromContainer(creep);
+        }
     },
 
 }
