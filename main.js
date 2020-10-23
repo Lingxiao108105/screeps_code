@@ -12,7 +12,7 @@ module.exports.loop = function () {
     }
 
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    console.log('upgraders: ' + upgraders.length);
+    //console.log('upgraders: ' + upgraders.length);
     if(upgraders.length < 1) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
@@ -20,7 +20,7 @@ module.exports.loop = function () {
             {memory: {role: 'upgrader'}});
     }
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    console.log('Builders: ' + builders.length);
+    //console.log('Builders: ' + builders.length);
     if(builders.length < 1) {
         var newName = 'builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
@@ -28,7 +28,7 @@ module.exports.loop = function () {
             {memory: {role: 'builder'}});
     }
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    console.log('Harvesters: ' + harvesters.length);
+    //console.log('Harvesters: ' + harvesters.length);
     if(harvesters.length < 3) {
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
@@ -48,7 +48,19 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
     
-    
+
+    /** 
+     * create the road
+    let default_room = Game.spawns['Spawn1'].room;
+    let path = default_room.findPath(Game.spawns['Spawn1'].pos,default_room.find(FIND_SOURCES)[0].pos,{ignoreCreeps: false});
+    for(var i = 0;i<path.length;i++){
+        let step = path[i];
+        default_room.createConstructionSite(step.x, step.y, STRUCTURE_ROAD);
+        console.log(step.x);
+    }
+
+    * Game.spawns['Spawn1'].room.createConstructionSite(5,20,STRUCTURE_EXTENSION);
+    */
     
     var tower = Game.getObjectById('ca513ac7e41cc1db0d5e8094');
     if(tower) {
