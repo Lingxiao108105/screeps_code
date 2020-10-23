@@ -19,11 +19,10 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
     
-
     /** 
      * create the road
     let default_room = Game.spawns['Spawn1'].room;
-    let path = default_room.findPath(Game.spawns['Spawn1'].pos,default_room.find(FIND_SOURCES)[0].pos,{ignoreCreeps: false});
+    let path = default_room.findPath(Game.spawns['Spawn1'].pos,default_room.find(FIND_SOURCES)[1].pos,{ignoreCreeps: false});
     for(var i = 0;i<path.length;i++){
         let step = path[i];
         default_room.createConstructionSite(step.x, step.y, STRUCTURE_ROAD);

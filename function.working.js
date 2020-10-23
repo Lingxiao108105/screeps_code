@@ -15,8 +15,21 @@ var functionWorking = {
     /** @param {Creep} creep **/
     harvest: function(creep) {
         var sources = creep.room.find(FIND_SOURCES);
-        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+        var harvestSource = creep.memory.harvestSource;
+        //define the source it will harvest
+        if(harvestSource == undefined){
+            if(Game.spawns['Spawn1'].memory.harvestSource != 1){
+                Game.spawns['Spawn1'].memory.harvestSource = 1;
+            }
+            else{
+                Game.spawns['Spawn1'].memory.harvestSource = 0;
+            }
+            creep.memory.harvestSource = Game.spawns['Spawn1'].memory.harvestSource;
+            harvestSource = creep.memory.harvestSource;
+        }
+
+        if(creep.harvest(sources[harvestSource]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(sources[harvestSource], {visualizePathStyle: {stroke: '#ffaa00'}});
         }
         return true;
     },
@@ -99,6 +112,7 @@ var functionWorking = {
             structure.store > 50
         });
         if(target) {
+            console.log("IMHERE");
             if(creep.withdraw(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
@@ -117,6 +131,16 @@ var functionWorking = {
         }
     },
 
+    /** @param {Creep} creep **/
+    renew: function(creep){
+        if(creep.ticksToLive < 100){
+            if(Game.spawns['Spawn1'].renewCreep(creep) == ERR_NOT_IN_RANGE){
+                creep.moveTo(Game.spawns['Spawn1'].pos);
+            }
+            return true;
+        }
+        return false;
+    }
 }
 
 module.exports = functionWorking;
